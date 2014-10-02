@@ -36,6 +36,7 @@ public class Shapes {
 	return output;
     }
 
+
     // ~ 7 minutes
 
     public String tri2(int h) {
@@ -43,7 +44,7 @@ public class Shapes {
 	String output = "";
 	int rc = 1;
 	while (rc <= h) {
-	    int rc2 = h;
+	    int rc2 = h;	   
 	    int rc3 = rc;
 	    while (rc2 > rc) {
 		output+= " ";
@@ -58,5 +59,48 @@ public class Shapes {
 	}
 	return output;
     }
+
+
+    // tri1 version 2 (using for) done in class
+
+    public String tri1v2(int h){
+	String s = "";
+	/*
+	      int i = 0;
+	      while (i < h){
+	      
+	      i++;
+	      }
+	*/
+	int i, j;
+	for (i=0;i<h;i++){
+	    for (j=0; j<i; j++){
+		s = s+ "*";
+	    }
+	    s = s + "\n";
+	}
+	return s;
+    }
+
+    // tri2 version 2 (using for) done in class
+
+    public String tri2v2(int height){
+	int h;
+	int i;
+	String s = "";
+	for (h=1;h<=height;h++){
+	    /* add the next space line */
+	    for (i=0;i<height-h;i++){
+		s = s + " ";
+	    }
+	    /* add the next triangle line */
+	    for (i=0;i<h; i++){
+		s = s + "*";
+	    }
+	    s = s + "\n";
+	}
+	return s;
+    }
+
 
 }
