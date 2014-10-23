@@ -38,7 +38,9 @@ public class Akholyte extends Basechar{
 				int damage = this.getAtk(false) - (other.getDef() / 2);
 				other.setHP(other.getHP() - damage);
 				System.out.println("You landed a hit!");
+				wait(2000);
 				System.out.println("You inflicted " + damage + " damage!!");
+				wait(2000);
 			}
 
 			else {
@@ -51,7 +53,9 @@ public class Akholyte extends Basechar{
 				int damage = this.getAtk(true) - (other.getDef() / 2);
 				other.setHP(other.getHP() - damage);
 				System.out.println("You landed a hit!");
+				wait(2000);
 				System.out.println("You inflicted " + damage + " damage!!");
+				wait(2000);
 			}
 
 			else {
@@ -59,6 +63,13 @@ public class Akholyte extends Basechar{
 			}
 		}
 	}
+	
+	public static void wait(int ms){
+		try {
+		Thread.sleep(ms);
+		} catch (Exception e) {};
+	}
+	
    /*
    Might be used for later
     public void attack(Basechar other) {

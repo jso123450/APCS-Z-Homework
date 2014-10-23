@@ -60,11 +60,11 @@ public class Nomar extends Basechar{
 			int damage = this.getAtk(false) - (other.getDef() / 2);
 			other.setHP(other.getHP() - damage);
 			System.out.println("The " + this.getName() + " landed a hit!");
-			System.out.println("It inflicted " + damage + " damage!!");
+			System.out.println(this.getName() + " inflicted " + damage + " damage!!");
 		}
 
 		else {
-			System.out.println("It missed!!");
+			System.out.println(this.getName() + " missed!!");
 		}
 	}
 	
