@@ -145,47 +145,34 @@ public class ArrayStuff {
 	}
 	return output;
     }
-    /* Unfinished
-    My approach:
-      - if sum is odd return false
-      - have an array with the consecutive sums from the left and another for the right
-      - check for the same elements (thus the same sum of the elements) in the left and right arrays
-      - check if the sum of the indexes of the element in the left array and the right array + 2 is equal to the length of the original
-        (if this is true, then there is a way to balanace the array)
-      - else return false
 
+    // redone in class & finished with a cleaner approach
 
     public boolean canBalance(int[] nums) {
-	int sum = 0;
 	for (int i = 0; i < nums.length; i++){
-	    sum+= nums[i];
-	}
-	if ((sum % 2) != 0){
-	    return false;
-	}
-	int[] left = new int[nums.length];
-	left[0] = nums[0];
-	int[] right = new int[nums.length];
-	right[0] = nums[nums.length-1];
-	for (int i = 1; i < nums.length; i++){
-	    left[i] = left[i-1] + nums[i];
-	    right[i] = right[i-1] + nums[nums.length-i-1];
-	}
-	for (int i = 0; i < nums.length; i++){
-	    int[] same = new int[nums.length];
-	    for (int x = 0; x < nums.length; x++){
-		int holder = left[x];
-		for (int y = 0; y < nums.length; y++){
-		    if (right[y] == holder){
-			same[i] = holder;
-		    }
-		}
+	    // create new array with elements coming from the left
+	    int[] check = new int[i+1];
+	    for (int c = 0; c <= i; c++){
+		check[c] = nums[c];
 	    }
-     
+	    // check the sum of the new array
+	    int leftsum = 0;
+	    for (int left = 0; left <= i; left++){
+		leftsum+= check[left];
+	    }
+	    // check the sum of the elements not included in the new array
+	    int rightsum = 0;
+	    for (int right = i + 1; right < nums.length; right++){
+		rightsum+= nums[right];
+	    }
+	    // if the two sums are equal, return true
+	    if (leftsum == rightsum){
+		return true;
+	    }
 	}
+	// else return false
 	return false;
     }
-    */
 
     /*-----------------------------Main Method-------------------------------*/
     
