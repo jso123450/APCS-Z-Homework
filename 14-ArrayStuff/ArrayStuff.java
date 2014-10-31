@@ -174,6 +174,30 @@ public class ArrayStuff {
 	return false;
     }
 
+
+    // 30 mins
+    public int maxMirror(int[] nums) {
+	int len = nums.length;
+	int c;
+	int max = 0;
+	for (int i = 0; i < len; i++){
+	    c = 0;
+	    for (int r = len - 1; ((i + c < len) && (r > -1)); r--){
+		if (nums[i+c] == nums[r]) {
+		    c++;
+		}
+		else{
+		    if (c > 0){
+			max = Math.max(c, max);
+			c = 0;
+		    }
+		}
+	    }
+	    max = Math.max(c, max);
+	}
+	return max;
+    }
+
     /*-----------------------------Main Method-------------------------------*/
     
     public static void main(String[] args){
