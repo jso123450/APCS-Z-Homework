@@ -2,7 +2,7 @@ import java.util.*;
 
 public class ArrayStuff {
 
-    /*--------------------------Instance Variables---------------------------*/
+    /*--------------------------Instance Variables--------------------------*/
     
     private int[] a;
 
