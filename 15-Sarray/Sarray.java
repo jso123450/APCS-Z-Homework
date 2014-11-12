@@ -3,9 +3,9 @@ import java.util.*;
 public class Sarray{
 
     // Instance Variables
-    int[] data;
-    int last;
-    Random rnd;
+    private int[] data;
+    private int last;
+    private Random rnd;
 
     // Constructors
 
@@ -19,7 +19,7 @@ public class Sarray{
 	for (int i = 0; i < length; i++){
 	    data[i] = rnd.nextInt(100);
 	}
-	last = length - 1;
+	last = size() - 1;
     }
 
     public Sarray(int length, int[] list){
@@ -27,7 +27,7 @@ public class Sarray{
         for (int i = 0; i < list.length; i++){
 	    data[i] = list[i];
 	}
-	last = list.length - 1;
+	last = size() - 1;
     }
 
     // Methods
@@ -38,6 +38,24 @@ public class Sarray{
 	    array+= data[i] + ", ";
 	}
 	return array;
+    }
+
+    // if you try to do something to an index that's not contained within
+    // the list but may be within the array
+    private void checkIndex(int index){
+	if (index > last)
+	    throw new IndexOutOfBoundsException();
+    }
+
+
+    private int[] grow(){
+	int[] newData2;
+	if (size() == data.length){
+	    newData2 = new int[data.length + ( data.length / 2 ) ];
+	}
+	else
+	    newData2 = new int[data.length];
+	return newData2;
     }
 
     public int size(){
@@ -53,11 +71,11 @@ public class Sarray{
 
     public boolean add(int i){
 	if (size() == data.length){
-	    int[] newData = new int[size() + 1];
-	    for (int n = 0; n < data.length; n++){
+	    int[] newData = grow();
+	    for (int n = 0; n <= last; n++){
 		newData[n] = data[n];
 	    }
-	    newData[ newData.length - 1 ] = i;
+	    newData[ last + 1 ] = i;
 	    data = newData;
 	}
 	else {
@@ -67,24 +85,21 @@ public class Sarray{
     }
 
     public void add( int index, int i ){
-	int[] newData;
-	if (size() != data.length){
-	    newData = new int[data.length];
-	}
-	else {
-	    newData = new int[data.length + 1];
-	}
-	for (int x = 0; x < index; x++){
-	    newData[x] = data[x];
-	}
-	newData[index] = i;
-	for (int x = index + 1; x < data.length + 1; x++){
-	    newData[x] = data[x-1];
+	checkIndex( index );
+	int[] newData = grow();
+	for (int x = 0; x < data.length; x++){
+	    if (x < index)
+		newData[x] = data[x];
+	    else if (x == index)
+		newData[x] = i;
+	    else
+		newData[x] = data[x-1];
 	}
 	data = newData;
     }
 
     public int get(int index){
+	checkIndex( index );
 	return data[index];
     }
 
@@ -95,6 +110,7 @@ public class Sarray{
     }
 
     public int remove(int index){
+	checkIndex( index );
 	int old = data[index];
 	int[] newData = new int[data.length];
 	for (int i = 0; i < data.length; i++){
@@ -112,23 +128,54 @@ public class Sarray{
     // Main
     public static void main(String[] args){
 	Sarray array = new Sarray();
+	System.out.println( "Original" );
 	System.out.println(array);
 	System.out.println(array.size());
+	System.out.println();
+	System.out.println( "After add(5)" );
 	array.add(5);
-	System.out.println();
 	System.out.println(array);
 	System.out.println(array.size());
 	System.out.println();
+	System.out.println( "After add(5,5)" );
 	array.add(5,5);
 	System.out.println(array);
+	System.out.println(array.size());
 	System.out.println();
-	System.out.println(array.get(5));
+	System.out.println("What's at index 5?");
+	System.out.println(array.get(5));	
+	System.out.println();
+	System.out.println("After setting the element at index 5 to 0");
 	array.set(5, 0);
 	System.out.println(array);
 	System.out.println(array.size());
 	System.out.println();
+	System.out.println("After removing the element at index 5");
 	array.remove(5);
 	System.out.println(array);
 	System.out.println(array.size());
+	System.out.println();
+	try {
+	    System.out.println("Trying to remove the element at index 0");
+	    array.remove(0);
+	    System.out.println(array);
+	    System.out.println("Trying to remove the element at index 9001");
+	    array.remove(9001);
+	} catch (IndexOutOfBoundsException e){
+	    System.out.println(e);
+	}
+	System.out.println();
+	try {
+	    System.out.println("Trying to insert the element 9001 at index 5");
+	    array.add(5, 9001);
+	    System.out.println(array);
+	    System.out.println(array.size());
+	    System.out.println("Trying to insert the element 5 at index 9001");
+	    array.add(9001, 5);
+	    System.out.println(array);
+	    System.out.println(array.size());
+	} catch (IndexOutOfBoundsException e){
+	    System.out.println(e);
+	}
     }
 }
