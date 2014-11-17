@@ -26,16 +26,15 @@ public class ArrayLists{
 	return output;
     }
 
-    public void randomize(){
+    public void randomizeAL(){
         ArrayLists copy = new ArrayLists(this.ai.size());
 	for (int i = 0; i < this.ai.size(); i++){
+	    // r is randomized to be used as the index of the copy
 	    int r = rnd.nextInt(copy.ai.size());
-	    System.out.println("index = " + i);
-	    System.out.println("random = " + r);
-	    System.out.println("copy = " + copy.ai);
+	    // then the element in copy at index r is used placed in the
+	    // original arraylist
 	    this.ai.set(i, copy.ai.get(r));
 	    copy.ai.remove(r);
-	    System.out.println(this.ai);
 	}
     }
 
@@ -43,8 +42,8 @@ public class ArrayLists{
     public static void main(String[] args){
 	ArrayLists a = new ArrayLists();
 	System.out.println(a);
-       	a.randomize();
-	//System.out.println(a);
+       	a.randomizeAL();
+        System.out.println(a);
     }
 
 }
