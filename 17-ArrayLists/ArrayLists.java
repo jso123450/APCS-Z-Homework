@@ -34,6 +34,7 @@ public class ArrayLists{
 	    // then the element in copy at index r is used placed in the
 	    // original arraylist
 	    this.ai.set(i, copy.ai.get(r));
+	    // remove the element in copy so the numbers don't repeat
 	    copy.ai.remove(r);
 	}
     }
