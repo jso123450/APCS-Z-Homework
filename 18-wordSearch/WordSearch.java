@@ -35,60 +35,81 @@ public class WordSearch {
 	return output;
     }
 
-    public boolean checkBoundsH( boolean leftR, String w, int row, int col){
+    // char direction
+    //    1. l = left = place the characters in String w in order from right to left
+    //    2. r = right = to the right
+    //    3. u = up = upwards
+    //    4. d = down = downwards
+
+    public boolean checkBounds( char direction, String w, int row, int col){
 	boolean outofbounds = false;
 	int c = col;
+	int r = row;
 	int len = w.length();
 	char check = 'D';
 	int index = 0;
 	try {
 	    for (int i = 0; i < len; i++){
-		check = board[row][c];
-		index = i;
-		if (leftR)
+		check = board[r][c];
+		if (direction == 'r')
 		    c++;
-		else
+		else if (direction == 'l')
 		    c--;
+		else if (direction == 'u')
+		    r--;
+		else if (direction == 'd')
+		    r++;
+		index = i;
 	    }
 	} catch (IndexOutOfBoundsException e){
-	    System.out.println("addWordH crashed with " + e);
-	    System.out.println("addWordH crashed when trying to add " + w.charAt(index));
+	    System.out.println("addWord crashed with " + e);
+	    System.out.println("addWord crashed when trying to add " + w.charAt(index));
 	    outofbounds = true;
 	}
 	return outofbounds;
     }
 
-    public boolean checkIllegalOverlapH(boolean leftR, String w, int row, int col){
+    public boolean checkIllegalOverlap(char direction, String w, int row, int col){
+	int r = row;
 	int c = col;
 	boolean illegalOverlap = false;
 	for (int i = 0; i < w.length(); i++){
-	    if ((board[row][c] != '.') && (board[row][c] != w.charAt(i))){
+	    if ((board[r][c] != '.') && (board[r][c] != w.charAt(i))){
 		illegalOverlap = true;
 		break;
 	    }
-	    if (leftR)
+	    if (direction == 'r')
 		c++;
-	    else
+	    else if (direction == 'l')
 		c--;
+	    else if (direction == 'u')
+		r--;
+	    else if (direction == 'd')
+		r++;
 	}
 	return illegalOverlap;
     }
     
-    public void addWordH(boolean leftR, String w, int row, int col){
+    public void addWord(char direction, String w, int row, int col){
+	int r = row;
 	int c = col;
-	boolean checkBounds = checkBoundsH( leftR, w, row, c );
+	boolean checkBounds = checkBounds( direction, w, row, c );
 	if (!checkBounds){
-	    boolean illegalOverlap = checkIllegalOverlapH( leftR, w, row, c );
+	    boolean illegalOverlap = checkIllegalOverlap( direction, w, row, c );
 	    if (illegalOverlap){
 		System.out.println("Illegal Overlap");
 	    }
 	    else {
 		for (int i = 0; i < w.length(); i++){
-		    board[row][c] = w.charAt(i);
-		    if (leftR)
+		    board[r][c] = w.charAt(i);
+		    if (direction == 'r')
 			c++;
-		    else
+		    else if (direction == 'l')
 			c--;
+		    else if (direction == 'u')
+			r--;
+		    else if (direction == 'd')
+			r++;
 		}
 	    }
 	}
@@ -97,18 +118,26 @@ public class WordSearch {
     public static void main(String[] args) {
 	WordSearch w = new WordSearch();
 	System.out.println(w);
-	System.out.println("Adding hello forwards starting at R3C15");
-	w.addWordH(true,"hello",3,15); // should work
-	System.out.println("Adding look forwards starting at R3C14");
-	w.addWordH(true,"look",3,14); // test illegal overlap
-	System.out.println("Adding look forwards starting at R3C18");
-	w.addWordH(true,"look",3,18); // test legal overlap
-	System.out.println("Adding look forwards to R-3C20");
-	w.addWordH(true,"look",-3,20); // test illegal row
-	System.out.println("Adding look forwards to R3C55");
-        w.addWordH(true,"look",3,55); // test illegal col
-	System.out.println("Adding hey backwards R2C13");
-	w.addWordH(false,"hey",2,13);
+	System.out.println("Adding hello LR starting at R3C15");
+	w.addWord('r',"hello",3,15); // should work
+	System.out.println("Adding look LR starting at R3C14");
+	w.addWord('r',"look",3,14); // test illegal overlap
+	System.out.println("Adding look LR starting at R3C18");
+	w.addWord('r',"look",3,18); // test legal overlap
+	System.out.println("Adding look LR to R-3C20");
+	w.addWord('r',"look",-3,20); // test illegal row
+	System.out.println("Adding look LR to R3C55");
+        w.addWord('r',"look",3,55); // test illegal col
+	System.out.println("Adding hey RL R2C13");
+	w.addWord('l',"hey",2,13);
+	System.out.println("Adding homework DU R5C15");
+	w.addWord('u',"homework",8,30);
+	System.out.println("Adding homework UD R5C15");
+	w.addWord('d',"homework",5,15);
+	System.out.println("Adding homework LR R5C15");
+	w.addWord('r',"homework",5,15);
+	System.out.println("Adding homework RL R7C15");
+	w.addWord('l',"homework",7,15);
 	System.out.println(w);
     }
     
