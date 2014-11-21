@@ -40,8 +40,44 @@ public class WordSearch {
     //    2. r = right = to the right
     //    3. u = up = upwards
     //    4. d = down = downwards
+    //    5. diagonals
+    //       - dur = diagonal up right
+    //       - ddr = diagonal down right
+    //       - dul = diagonal up left
+    //       - ddl = diagonal down left
 
-    public boolean checkBounds( char direction, String w, int row, int col){
+    public int[] indexIncrement( String direction, int row, int col){
+	int[] output = new int[2];
+	int c = col;
+	int r = row;
+	if (direction.equals("r"))
+	    c++;
+	else if (direction.equals("l"))
+	    c--;
+	else if (direction.equals("u"))
+	    r--;
+	else if (direction.equals("d"))
+	    r++;
+	else if (direction.equals("dur")){
+	    r--;
+	    c++;
+	}
+	else if (direction.equals("ddr")){
+	    r++;
+	    c++;
+	}
+	else if (direction.equals("dul")){
+	    r--;
+	    c--;
+	}
+	else if (direction.equals("ddl")){
+	    r++;
+	    c--;
+	}
+	return output;
+    }
+
+    public boolean checkBounds( String direction, String w, int row, int col){
 	boolean outofbounds = false;
 	int c = col;
 	int r = row;
@@ -51,14 +87,8 @@ public class WordSearch {
 	try {
 	    for (int i = 0; i < len; i++){
 		check = board[r][c];
-		if (direction == 'r')
-		    c++;
-		else if (direction == 'l')
-		    c--;
-		else if (direction == 'u')
-		    r--;
-		else if (direction == 'd')
-		    r++;
+		c = indexIncrement(r,c)[0];
+		r = indexIncrement(r,c)[1];
 		index = i;
 	    }
 	} catch (IndexOutOfBoundsException e){
