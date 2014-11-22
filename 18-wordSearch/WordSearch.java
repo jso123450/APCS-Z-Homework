@@ -2,7 +2,7 @@ import java.util.*;
 
 public class WordSearch {
 
-    // Instance Variables
+    /* ---------------------------------- Instance Variables -------------------------------- */
     
     private char[][] board;
     private int maxRows;
@@ -11,7 +11,7 @@ public class WordSearch {
 	= {"u", "d", "l", "r",
 	    "dur", "ddr", "dul", "ddl"};
 
-    // Constructors
+    /* ---------------------------------- Constructors -------------------------------- */
     
     public WordSearch(){
 	this(20,40);
@@ -31,7 +31,7 @@ public class WordSearch {
 	maxCols = c;
     }
 
-    // Methods
+    /* ---------------------------------- Methods -------------------------------- */
 
     public String toString(){
 	String output = "";
@@ -178,6 +178,8 @@ public class WordSearch {
 	    }
 	}
     }
+
+    /* ---------------------------------- Main -------------------------------- */
 		
     public static void main(String[] args) {
 	WordSearch w = new WordSearch();
