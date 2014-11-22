@@ -84,7 +84,7 @@ public class WordSearch {
 	    c--;
 	}
 	else{
-	    // ends program if invalid direction
+	    // ends program if invalid direction is entered as a parameter
 	    System.out.println("A valid direction must be entered");
 	    System.out.println("Valid directions: u, d, l, r, dur, ddr, dul, ddl ");
 	    System.exit(0);
