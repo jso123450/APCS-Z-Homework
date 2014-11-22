@@ -134,12 +134,9 @@ public class WordSearch {
     public boolean addWord(String w){
 	boolean output = false;
 	Random rnd = new Random();
-	String direction = "";
-	int r;
-	int c;
-	r = rnd.nextInt(maxRows);
-	c = rnd.nextInt(maxCols);
-	direction = whichDir[ rnd.nextInt(8) ];
+	String direction = whichDir [ rnd.nextInt(8) ];
+	int r = rnd.nextInt(maxRows);
+	int c = rnd.nextInt(maxCols);
 	boolean Bounds = checkBounds( direction, w, r, c );
 	if (Bounds){
 	    output = false;
