@@ -145,7 +145,11 @@ public class WordSearch {
 	else{
 	    boolean Illegal = checkIllegalOverlap( direction, w, r, c);
 	    if (!(Illegal)){
-		addWord( direction, w, r, c );
+		for (int i = 0; i < w.length(); i++){
+		    board[r][c] = w.charAt(i);
+		    r = indexIncrement(direction,r,c)[0];
+		    c = indexIncrement(direction,r,c)[1];
+		}
 		output = true;
 	    } 
 	    else{
@@ -211,7 +215,7 @@ public class WordSearch {
 	w.addWord("ddl","homework",12,10);
 	System.out.println("Adding random word");
 	w.addWord("World");
-	w.addWord("cool","cool",15,15);
+	// w.addWord("cool","cool",15,15); <-- returns an error
 	System.out.println(w);
     }
     
