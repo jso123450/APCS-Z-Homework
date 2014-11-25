@@ -7,9 +7,6 @@ public class WordSearch {
     private char[][] board;
     private int maxRows;
     private int maxCols;
-    private String[] whichDir
-	= {"u", "d", "l", "r",
-	    "dur", "ddr", "dul", "ddl"};
 
     /* ---------------------------------- Constructors -------------------------------- */
     
@@ -21,9 +18,6 @@ public class WordSearch {
 	board = new char[r][c];
 	for (int i = 0; i < board.length; i++){
 	    for (int j = 0; j < board[i].length; j++){
-		// . is used as a placeholder; default value is null
-		// which is non-printing; not good for testing
-		// single quotes are used for individual characters
 		board[i][j] = '.';
 	    }
 	}
@@ -32,6 +26,8 @@ public class WordSearch {
     }
 
     /* ---------------------------------- Methods -------------------------------- */
+
+    // prints out the current board
 
     public String toString(){
 	String output = "";
@@ -43,11 +39,17 @@ public class WordSearch {
 	}
 	return output;
     }
+    
+    // checks if the word specified fits onto the board by trying to assign the character on the board
+    // at a position one of the characters in the word will be placed in to a placeholder variable
+    // if it returns an error in the try block, it will be catched and an error message detailing
+    // what happened will be printed
 
-    public boolean checkBounds( String w, int row, int col, int deltaR, int deltaC ){
+    public boolean checkBounds(String w, int row, int col, int deltaRow, int deltaCol){
 	boolean outofbounds = false;
-	if (deltaR == 0 && deltaC == 0)
-	    return outofbounds;      
+	// if no direction is indicated, return false
+	if ((deltaRow == 0) && (deltaCol == 0))
+	    return outofbounds;
 	int c = col;
 	int r = row;
 	int len = w.length();
@@ -56,19 +58,22 @@ public class WordSearch {
 	try {
 	    for (int i = 0; i < len; i++){
 		check = board[r][c];
-	        r+= deltaR;
-		c+= deltaC;
+		r+= deltaRow;
+		c+= deltaCol;
 		index = i;
 	    }
 	} catch (IndexOutOfBoundsException e){
-	    System.out.println("addWord crashed with " + e);
-	    System.out.println("addWord crashed when trying to add " + w.charAt(index));
+	    System.out.println("addWord crashed when trying to add " + w);
+	    System.out.println("addWord was attempting to add " + w.charAt(index) + " at R" + r + "C" + c);
+	    System.out.println("addWord crashed with the error " + e);
 	    outofbounds = true;
 	}
 	return outofbounds;
     }
 
-    public boolean checkIllegalOverlap( String w, int row, int col, int deltaR, int deltaC ){
+    // checks to see if the word w illegaly overlaps with a word already on the board
+    
+    public boolean checkIllegalOverlap(String w, int row, int col, int deltaRow, int deltaCol){
 	int r = row;
 	int c = col;
 	boolean illegalOverlap = false;
@@ -77,29 +82,30 @@ public class WordSearch {
 		illegalOverlap = true;
 		break;
 	    }
-	    r+= deltaR;
-	    c+= deltaC;
+	    r+= deltaRow;
+	    c+= deltaCol;
 	}
 	return illegalOverlap;
     }
 
+    // adds a specified word w to the board in a random orientation and at a random location
+
     public boolean addWord(String w){
 	boolean output = false;
 	Random rnd = new Random();
-	String direction = whichDir [ rnd.nextInt(8) ];
 	int r = rnd.nextInt(maxRows);
 	int c = rnd.nextInt(maxCols);
 	int deltaR = rnd.nextInt(3) - 1;
 	int deltaC = rnd.nextInt(3) - 1;
-	boolean Bounds = checkBounds( w, r, c, deltaR, deltaC );
+	boolean Bounds = checkBounds(w,r,c,deltaR,deltaC);
 	if (Bounds){
 	    output = false;
-	    System.out.println("Out of Bounds or deltaR = deltaC = 0");
+	    System.out.println("Out of Bounds");
         }
 	else{
-	    boolean Illegal = checkIllegalOverlap( w, r, c, deltaR, deltaC );
+	    boolean Illegal = checkIllegalOverlap(w,r,c,deltaR,deltaC);
 	    if (!(Illegal)){
-		for (int i = 0; i < w.length(); i++){
+	        for (int i = 0; i < w.length(); i++){
 		    board[r][c] = w.charAt(i);
 		    r+= deltaR;
 		    c+= deltaC;
@@ -113,21 +119,23 @@ public class WordSearch {
 	}
 	return output;
     }
+
+    // to add a word to a specified location with a specified direction
     
-    public void addWord(String w, int row, int col, int deltaR, int deltaC){
+    public void addWord(String w, int row, int col, int deltaRow, int deltaCol){
 	int r = row;
 	int c = col;
-	boolean checkBounds = checkBounds( w, row, c, deltaR, deltaC );
+	boolean checkBounds = checkBounds(w,r,c,deltaRow,deltaCol);
 	if (!checkBounds){
-	    boolean illegalOverlap = checkIllegalOverlap( w, row, c, deltaR, deltaC );
+	    boolean illegalOverlap = checkIllegalOverlap(w,r,c,deltaRow,deltaCol );
 	    if (illegalOverlap){
 		System.out.println("Illegal Overlap");
 	    }
 	    else {
 		for (int i = 0; i < w.length(); i++){
 		    board[r][c] = w.charAt(i);
-		    r+= deltaR;
-		    c+= deltaC;
+		    r+= deltaRow;
+		    c+= deltaCol;
 		}
 		System.out.println("The word " + w + " has successfully been added!");
 	    }
@@ -139,14 +147,26 @@ public class WordSearch {
     public static void main(String[] args) {
 	WordSearch w = new WordSearch();
 	System.out.println(w);
-	w.addWord("hello");
-	w.addWord("homework", 15, 15, 0, 1);
-	w.addWord("homework", 15, 15, 0, -1);
-	w.addWord("homework", 15, 15, 1, 0);
-	w.addWord("homework", 15, 15, -1, 0);
-	w.addWord("homework", 15, 15, -1, -1);
-	w.addWord("homework", 15, 15, 1, -1);
-	w.addWord("homework", 15, 15, 1, 1);
+        System.out.println("Adding hello LR starting at R3C15");
+	w.addWord("hello",3,15,0,1);
+	System.out.println("Adding hello RL starting at R3C15");
+	w.addWord("hello",3,15,0,-1);
+	System.out.println("Adding hello upwards starting at R3C15"); // should give an error
+	w.addWord("hello",3,15,-1,0);
+	System.out.println("Adding hello downwards starting at R3C15");
+	w.addWord("hello",3,15,1,0);
+	System.out.println("Adding hello diagonally up right starting at R3C15"); // should give an error
+	w.addWord("hello",3,15,-1,1);
+	System.out.println("Adding hello diagonally down right starting at R3C15");
+	w.addWord("hello",3,15,1,1);
+	System.out.println("Adding hello diagonally up left starting at R3C15"); // should give an error
+	w.addWord("hello",3,15,-1,-1);
+	System.out.println("Adding hello diagonally down left starting at R3C15");
+	w.addWord("hello",3,15,1,-1);
+	System.out.println("Adding homework LR starting at R7C14");
+	w.addWord("homework",7,14,0,1);
+	System.out.println("Adding homework LR starting at R6C15"); // should give an error
+	w.addWord("homework",6,15,0,1);
 	System.out.println(w);
     }
     
