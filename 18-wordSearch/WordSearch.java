@@ -42,7 +42,7 @@ public class WordSearch {
     
     // checks if the word specified fits onto the board by trying to assign the character on the board
     // at a position one of the characters in the word will be placed in to a placeholder variable
-    // if it returns an error in the try block, it will be catched and an error message detailing
+    // if it returns an error in the try block, it will be caught and an error message detailing
     // what happened will be printed
 
     public boolean checkBounds(String w, int row, int col, int deltaRow, int deltaCol){
