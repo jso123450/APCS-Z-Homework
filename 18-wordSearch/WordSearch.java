@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.io.*;
 
 public class WordSearch {
 
@@ -7,6 +8,7 @@ public class WordSearch {
     private char[][] board;
     private int maxRows;
     private int maxCols;
+    private ArrayList<String> wordlist;
 
     /* ---------------------------------- Constructors -------------------------------- */
     
@@ -23,6 +25,19 @@ public class WordSearch {
 	}
 	maxRows = r;
 	maxCols = c;
+	Scanner sc = null;
+	try {
+	    sc = new Scanner(new File("words.txt"));
+	} catch (Exception e){
+	    System.out.println("Can't open word file");
+	    System.exit(0);
+	}
+	wordlist = new ArrayList<String>();
+	while (sc.hasNext()){
+	    wordlist.add(sc.next());
+	}
+	System.out.println(wordlist.length());
+	System.out.println(wordlist.get(500));
     }
 
     /* ---------------------------------- Methods -------------------------------- */
@@ -147,6 +162,8 @@ public class WordSearch {
     public static void main(String[] args) {
 	WordSearch w = new WordSearch();
 	System.out.println(w);
+	/*
+	  Tests
         System.out.println("Adding hello LR starting at R3C15");
 	w.addWord("hello",3,15,0,1);
 	System.out.println("Adding hello RL starting at R3C15");
@@ -167,6 +184,7 @@ public class WordSearch {
 	w.addWord("homework",7,14,0,1);
 	System.out.println("Adding homework LR starting at R6C15"); // the error should be caught
 	w.addWord("homework",6,15,0,1);
+	*/
 	System.out.println(w);
     }
     
