@@ -151,21 +151,21 @@ public class WordSearch {
 	w.addWord("hello",3,15,0,1);
 	System.out.println("Adding hello RL starting at R3C15");
 	w.addWord("hello",3,15,0,-1);
-	System.out.println("Adding hello upwards starting at R3C15"); // should give an error
+	System.out.println("Adding hello upwards starting at R3C15"); // the error should be caught
 	w.addWord("hello",3,15,-1,0);
 	System.out.println("Adding hello downwards starting at R3C15");
 	w.addWord("hello",3,15,1,0);
-	System.out.println("Adding hello diagonally up right starting at R3C15"); // should give an error
+	System.out.println("Adding hello diagonally up right starting at R3C15"); // the error should be caught
 	w.addWord("hello",3,15,-1,1);
 	System.out.println("Adding hello diagonally down right starting at R3C15");
 	w.addWord("hello",3,15,1,1);
-	System.out.println("Adding hello diagonally up left starting at R3C15"); // should give an error
+	System.out.println("Adding hello diagonally up left starting at R3C15"); // the error should be caught
 	w.addWord("hello",3,15,-1,-1);
 	System.out.println("Adding hello diagonally down left starting at R3C15");
 	w.addWord("hello",3,15,1,-1);
 	System.out.println("Adding homework LR starting at R7C14");
 	w.addWord("homework",7,14,0,1);
-	System.out.println("Adding homework LR starting at R6C15"); // should give an error
+	System.out.println("Adding homework LR starting at R6C15"); // the error should be caught
 	w.addWord("homework",6,15,0,1);
 	System.out.println(w);
     }
