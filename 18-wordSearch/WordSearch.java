@@ -1,14 +1,16 @@
-import java.util.Random;
+import java.util.*;
 import java.io.*;
 
 public class WordSearch {
 
     /* ---------------------------------- Instance Variables -------------------------------- */
     
-    private char[][] board;
+    private char[][] board, key;
     private int maxRows;
     private int maxCols;
-    private ArrayList<String> wordlist;
+    private ArrayList<String> words;
+    private ArrayList<String> wordsInPuzzle;
+    private Random rnd;
 
     /* ---------------------------------- Constructors -------------------------------- */
     
@@ -17,6 +19,21 @@ public class WordSearch {
     }
     
     public WordSearch(int r, int c){
+	rnd = new Random();
+	words = new ArrayList<String>();
+	Scanner sc = null;
+
+	try {
+	    sc = new Scanner(new File("words.txt"));
+	} catch (Exception e){
+	    System.out.println("Can't open word file");
+	    System.exit(0);
+	}
+	words = new ArrayList<String>();
+	while (sc.hasNext()){
+	    words.add(sc.next());
+	}
+
 	board = new char[r][c];
 	for (int i = 0; i < board.length; i++){
 	    for (int j = 0; j < board[i].length; j++){
@@ -25,19 +42,6 @@ public class WordSearch {
 	}
 	maxRows = r;
 	maxCols = c;
-	Scanner sc = null;
-	try {
-	    sc = new Scanner(new File("words.txt"));
-	} catch (Exception e){
-	    System.out.println("Can't open word file");
-	    System.exit(0);
-	}
-	wordlist = new ArrayList<String>();
-	while (sc.hasNext()){
-	    wordlist.add(sc.next());
-	}
-	System.out.println(wordlist.length());
-	System.out.println(wordlist.get(500));
     }
 
     /* ---------------------------------- Methods -------------------------------- */
@@ -53,6 +57,31 @@ public class WordSearch {
 	    output+= "\n";
 	}
 	return output;
+    }
+
+    private void makeKey(){
+	key = new char[board.length][board[0].length];
+	for (int i = 0; i < board.length; i++){
+	    for (int j = 0; j < board[0].length; j++){
+		key[i][j] = board[i][j];
+	    }
+	}
+    }
+
+    public String getWIP(){
+	return wordsInPuzzle.toString();
+    }
+
+    public String getKey() {
+	String s = "";
+				
+	for (int i = 0; i < key.length; i++) {
+	    for (int j = 0; j < key[i].length; j++) {
+		s = s + key[i][j];
+	    }
+	    s = s + "\n";
+	}
+	return s;
     }
     
     // checks if the word specified fits onto the board by trying to assign the character on the board
@@ -157,6 +186,43 @@ public class WordSearch {
 	}
     }
 
+    public void buildPuzzle(int numwords){
+
+	/*
+	  loop 
+	  take a random word out of the word list
+	  try to add it to the puzzle
+
+	*/
+	wordsInPuzzle = new ArrayList<String>();
+	while (numwords > 0){
+	    int wordIndex = rnd.nextInt(words.size());
+	    String word = words.get(wordIndex);
+	    if (addWord(word)) {
+		numwords--;
+		words.remove(wordIndex);
+		wordsInPuzzle.add(word);
+	    }
+	}
+	makeKey();
+	/* fill the rest of the board */
+	for (int i = 0; i < board.length; i++) {
+	    for (int j = 0; j < board[0].length; j++) {
+		if (board[i][j]=='.'){
+		    /* method 2 */
+		    String letters = "abcdefghijklmnopqrstuvwxyz";
+		    char letter = letters.charAt(rnd.nextInt(letters.length()));
+		    board[i][j]=letter;
+												
+		    /* method 1
+		       int offset = rnd.nextInt(26);
+		       board[i][j]=(char)((int)'a'+offset);
+		    */
+		}
+	    }
+	}
+    }
+
     /* ---------------------------------- Main -------------------------------- */
 		
     public static void main(String[] args) {
@@ -185,6 +251,7 @@ public class WordSearch {
 	System.out.println("Adding homework LR starting at R6C15"); // the error should be caught
 	w.addWord("homework",6,15,0,1);
 	*/
+	w.buildPuzzle(10);
 	System.out.println(w);
     }
     
