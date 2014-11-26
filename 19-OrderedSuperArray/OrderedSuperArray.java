@@ -14,6 +14,11 @@ public class OrderedSuperArray extends SarrayStr{
         super(length);
     }
 
+    public OrderedSuperArray(int length, String[] list){
+	super(length, list);
+	order();
+    }
+
     // Methods
     public void order(){
 	int s = data.length - 1;
@@ -30,5 +35,11 @@ public class OrderedSuperArray extends SarrayStr{
 	}
     }
 
+    public String set(int index, String s){
+	String old = data[index];
+	data[index] = s;
+	order();
+	return old;
+    }
     
 }
