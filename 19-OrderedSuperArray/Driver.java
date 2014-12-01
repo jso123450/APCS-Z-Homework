@@ -30,6 +30,7 @@ public class Driver{
 	OrderedSuperArray o = new OrderedSuperArray(100);
 	
 	if (args.length > 0){
+	    System.out.println();
 	    System.out.println("The OrderedSuperArray was originally:");
 	    System.out.println(o);
 	    for (int i = 0; i < args.length; i++){
@@ -38,6 +39,7 @@ public class Driver{
 	    System.out.println();
 	    System.out.println("After adding in your words & numbers, it now looks like:");
 	    System.out.println(o);
+	    System.out.println();
 	}
 	else {
 	    System.out.println("Enter parameters to be added to an OrderedSuperArray");

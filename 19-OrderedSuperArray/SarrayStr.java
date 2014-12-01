@@ -57,6 +57,11 @@ public class SarrayStr{
 	String[] newData2;
 	if (size() == data.length){
 	    newData2 = new String[data.length + ( data.length / 2 ) ];
+	    last++;
+	    while (last <= (data.length / 2)){
+		data[last] = ""; 
+		last++;
+	    }
 	}
 	else
 	    newData2 = new String[data.length];
