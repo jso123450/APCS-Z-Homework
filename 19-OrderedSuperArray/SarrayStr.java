@@ -37,10 +37,11 @@ public class SarrayStr{
     // Methods
     
     public String toString(){
-	String array = "";
+	String array = "{";
 	for (int i = 0; i < data.length; i++){
 	    array+= data[i] + ", ";
 	}
+	array+= "}";
 	return array;
     }
 
@@ -85,6 +86,7 @@ public class SarrayStr{
 	else {
 	    data[ size() ] = s;
 	}
+	last++;
 	return true;
     }
 
@@ -100,6 +102,7 @@ public class SarrayStr{
 		newData[x] = data[x-1];
 	}
 	data = newData;
+	last++;
     }
 
     public String get(int index){

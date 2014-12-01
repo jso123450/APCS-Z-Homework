@@ -4,6 +4,10 @@ public class OrderedSuperArray extends SarrayStr{
     private String[] data;
     private int last;
 
+    // had some trouble with super's data & last and this data & last but fixed it
+    // just needed to make sure to reassign this data & last to super's after
+    // running super methods
+
     // Constructors
 
     public OrderedSuperArray(){
@@ -75,10 +79,22 @@ public class OrderedSuperArray extends SarrayStr{
     }
 
     public boolean add(String s){
-	for (int i = 0; i <= last; i++){
-	    if ((s.compareTo(data[i]) > 0) && (s.compareTo(data[i+1]) < 0)){
-		super.add( i + 1, s );
-		break;
+	if (size() == 0)
+	    super.add(s);
+	else if (size() > 0){
+	    if (s.compareTo(data[last]) > 0)
+		super.add( s );
+	    else {
+		for (int i = 0; i <= last; i++){
+		    if ((s.compareTo(data[i]) > 0) && (s.compareTo(data[i+1]) < 0)){
+			super.add( i + 1, s );
+			break;
+		    }
+		    else if (s.compareTo(data[i]) < 0){
+			super.add( i, s );
+			break;
+		    }
+		}
 	    }
 	}
 	last++;
