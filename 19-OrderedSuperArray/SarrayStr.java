@@ -22,10 +22,16 @@ public class SarrayStr{
 
     public SarrayStr(int length, String[] list){
         data = new String[length];
-        for (int i = 0; i < list.length; i++){
+	int i = 0;
+        while (i < list.length){
 	    data[i] = list[i];
+	    i++;
 	}
-	last = size() - 1;
+	last = list.length - 1;
+	while (i < length){
+	    data[i] = "";
+	    i++;
+	}
     }
 
     // Methods
@@ -58,7 +64,7 @@ public class SarrayStr{
 
     public int size(){
 	int output = 0;
-	for (int i = data.length - 1; i > 0; i--){
+	for (int i = data.length - 1; i > -1; i--){
 	    if (!(data[i].equals(""))){
 	        output = i + 1;
 		break;
@@ -77,7 +83,7 @@ public class SarrayStr{
 	    data = newData;
 	}
 	else {
-	    data[ size() + 1 ] = s;
+	    data[ size() ] = s;
 	}
 	return true;
     }
@@ -121,5 +127,13 @@ public class SarrayStr{
 	}
 	data = newData;
 	return old;
+    }
+    
+    public String[] getData(){
+	return data;
+    }
+    
+    public int getLast(){
+	return last;
     }
 }
