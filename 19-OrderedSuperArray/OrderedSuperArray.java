@@ -26,22 +26,6 @@ public class OrderedSuperArray extends SarrayStr{
     }
 
     // Methods
-    /*
-    public void order(){
-	int s = data.length - 1;
-        for (int j = 0; j < data.length; j++){
-	    String holder = data[0];
-	    for (int i = 0; i < data.length; i++){
-		if (holder.compareTo(data[i]) < 0){
-		    holder = data[i];
-		}
-	    }
-	    data[j] = data[s];
-	    data[s] = holder;
-	    s--;
-	}
-    }
-    */
 
     public String findBiggest(int range){
 	String biggest = data[0];;
