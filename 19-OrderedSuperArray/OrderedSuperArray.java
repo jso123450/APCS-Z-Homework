@@ -63,7 +63,6 @@ public class OrderedSuperArray extends SarrayStr{
 
     public String set(int index, String s){
 	String old = data[index];
-	/*
 	try {
 	    checkIndex( index );
 	    data[index] = s;
@@ -72,9 +71,6 @@ public class OrderedSuperArray extends SarrayStr{
 	catch( IndexOutOfBoundsException e ){
 	    System.out.println("Index specified is out of bounds");
 	}
-	*/
-	data[index] = s;
-	order();
 	return old;
     }
 

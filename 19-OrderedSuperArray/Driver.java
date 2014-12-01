@@ -21,6 +21,7 @@ public class Driver{
 	System.out.println(o);
 	o.set(4, "dog");
 	System.out.println(o);
+	System.out.println(o.size());
     }
 
 }
