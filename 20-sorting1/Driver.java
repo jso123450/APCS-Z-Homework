@@ -2,12 +2,6 @@ public class Driver{
 
     public static void main(String[] args){
 	/* All the test cases work
-	String[] test = {"hello","abcd","xylophone","elephant","moshimoshi"};
-
-	SarrayStr s = new SarrayStr(100, test);
-	System.out.println(s);
-
-	System.out.println();
 
 	OrderedSuperArray ot = new OrderedSuperArray(100, test);
 	System.out.println(ot);
@@ -25,7 +19,6 @@ public class Driver{
 	System.out.println(ot);
 
 	System.out.println();
-	*/
 
 	OrderedSuperArray o = new OrderedSuperArray(100);
 	
@@ -44,6 +37,13 @@ public class Driver{
 	else {
 	    System.out.println("Enter parameters to be added to an OrderedSuperArray");
 	}
+	*/
+
+	String[] test = {"hello","abcd","xylophone","elephant","moshimoshi"};
+	SarrayStr s = new SarrayStr(100, test);
+	System.out.println(s);
+	s.isort();
+	System.out.println(s);
     }
 
 }
