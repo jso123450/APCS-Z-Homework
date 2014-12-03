@@ -145,16 +145,17 @@ public class SarrayStr{
 	return last;
     }
 
-    public void shift(String s){
+    public void shift(int range, String s){
 	int i;
-	for (i = last; i > 0 && s < data[i-1]; i--){
+	for (i = range; i > 0 && s < data[i-1]; i--){
 	    data[i] = data[i-1];
 	}
 	data[i] = s;
     }
 
     public void isort(){
-	for (int n = 0; n < last; n++){
-	    
+	for (int n = 1; n < last; n++){
+	    shift(n-1, n);
+	}
     }
 }
