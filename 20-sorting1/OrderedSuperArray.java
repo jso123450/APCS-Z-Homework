@@ -27,7 +27,7 @@ public class OrderedSuperArray extends SarrayStr{
 	ssort();
 	this.data = super.getData();
 	this.last = super.getLast();
-    }
+    } //
 
     // Methods
 
