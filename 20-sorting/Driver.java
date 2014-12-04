@@ -42,7 +42,17 @@ public class Driver{
 	String[] test = {"hello","abcd","xylophone","elephant","moshimoshi"};
 	SarrayStr s = new SarrayStr(100, test);
 	System.out.println(s);
-	s.isort();
+	if (args.length == 1){
+	    if (args[0].equals("i"))
+		s.isort();
+	    else if (args[0].equals("s"))
+		s.ssort();
+	    else if (args[0].equals("b"))
+		s.bsort();
+	    else {
+		System.out.println("Enter a sorting method: i, s or b");
+	    }
+	}
 	System.out.println(s);
     }
 

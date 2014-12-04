@@ -187,5 +187,22 @@ public class SarrayStr{
 	    j--;
 	}
     }
+
+    public void bsort(){
+	boolean keepRunning = true;
+	while (keepRunning){
+	    int swapsDone = 0;
+	    for (int i = 0; i < last; i++){
+		if (data[i].compareTo(data[i+1]) > 0){
+		    String holder = data[i];
+		    data[i] = data[i+1];
+		    data[i+1] = holder;
+		    swapsDone++;
+		}
+	    }
+	    if (swapsDone == 0)
+		keepRunning = false;
+	}
+    }
 	
 }
