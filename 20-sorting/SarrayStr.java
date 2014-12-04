@@ -19,6 +19,7 @@ public class SarrayStr{
 	}
 	last = size() - 1;
     }
+    //
 
     public SarrayStr(int length, String[] list){
         data = new String[length];
