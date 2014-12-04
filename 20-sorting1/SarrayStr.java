@@ -158,4 +158,34 @@ public class SarrayStr{
 	    shift(n, data[n]);
 	}
     }
+
+    public String findBiggest(int range){
+	String biggest = data[0];
+	for (int i = 1; i <= range; i++){
+	    if (biggest.compareTo(data[i]) < 0)
+		biggest = data[i];
+	}
+	return biggest;
+    }
+
+    public int findBiggestIndex(int range){
+	int index = 0;
+	for (int i = 1; i <= range; i++){
+	    if (data[index].compareTo(data[i]) < 0)
+		index = i;
+	}
+	return index;
+    }
+    
+    public void ssort(){
+	int j = last;
+	while (j > -1){
+	    String biggest = findBiggest(j);
+	    int biggestIndex = findBiggestIndex(j);
+	    data[biggestIndex] = data[j];
+	    data[j] = biggest;
+	    j--;
+	}
+    }
+	
 }
