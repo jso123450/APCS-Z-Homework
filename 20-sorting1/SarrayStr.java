@@ -185,6 +185,7 @@ public class SarrayStr{
 	    data[biggestIndex] = data[j];
 	    data[j] = biggest;
 	    j--;
+	    System.out.println();
 	}
     }
 	
