@@ -156,7 +156,6 @@ public class SarrayStr{
     public void isort(){
 	for (int n = 1; n <= last; n++){
 	    shift(n, data[n]);
-	    System.out.println(this);
 	}
     }
 }
