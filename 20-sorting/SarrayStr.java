@@ -145,6 +145,8 @@ public class SarrayStr{
 	return last;
     }
 
+    // Insertion Sort
+    
     public void shift(int range, String s){
 	int i;
 	for (i = range; (i > 0) && (s.compareTo(data[i-1]) < 0); i--){
@@ -158,6 +160,8 @@ public class SarrayStr{
 	    shift(n, data[n]);
 	}
     }
+
+    // Selection Sort -- run time is roughly the same as isort
 
     public String findBiggest(int range){
 	String biggest = data[0];
@@ -187,6 +191,9 @@ public class SarrayStr{
 	    j--;
 	}
     }
+
+    // Bubble Sort
+    // takes roughly about the same time as the other sorts
 
     public void bsort(){
 	boolean keepRunning = true;

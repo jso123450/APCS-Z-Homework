@@ -39,21 +39,26 @@ public class Driver{
 	}
 	*/
 
-	String[] test = {"hello","abcd","xylophone","elephant","moshimoshi"};
+	String[] test =
+	    {"hello","abcd","xylophone","elephant","moshimoshi","asd","mouse","keyboard",
+	     "screen","border","words","quotes","string","int","double","saausage","blubber",
+	     "pencil","cloud","moon","water","computer","school","network","hammer","walking",
+	     "violently","mediocre","literature","chair","two","window","cords","musical",
+	     "zebra","penguin","home","dog"};
 	SarrayStr s = new SarrayStr(100, test);
-	System.out.println(s);
 	if (args.length == 1){
+	    System.out.println(s);
 	    if (args[0].equals("i"))
 		s.isort();
 	    else if (args[0].equals("s"))
 		s.ssort();
 	    else if (args[0].equals("b"))
 		s.bsort();
-	    else {
-		System.out.println("Enter a sorting method: i, s or b");
-	    }
+	    System.out.println(s);
 	}
-	System.out.println(s);
+	else {
+	    System.out.println("Enter a sorting method: i, s or b");
+	}
     }
 
 }
