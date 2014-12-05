@@ -193,7 +193,9 @@ public class SarrayStr{
     }
 
     // Bubble Sort
-    // takes roughly about the same time as the other sorts
+    // run time becomes much longer as input increases
+    // inefficient way to sort large data sets -- need to perform
+    // increasingly more amount of operations as length increases
 
     public void bsort(){
 	boolean keepRunning = true;
