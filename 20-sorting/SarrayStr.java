@@ -146,6 +146,8 @@ public class SarrayStr{
     }
 
     // Insertion Sort
+    // a loop within a loop
+    // around n^2 operations?
     
     public void shift(int range, String s){
 	int i;
