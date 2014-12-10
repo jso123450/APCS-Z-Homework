@@ -1,5 +1,4 @@
 import java.util.Random;
-import java.util.Arrays;
 
 /*
   Interfaces -> contracts (in java) that specify that a class will implement

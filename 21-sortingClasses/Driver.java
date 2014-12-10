@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Driver{
     public static void main(String[] args){
 	for (int i = 0; i < 10; i++){
@@ -27,5 +29,24 @@ public class Driver{
 	System.out.println(Arrays.toString(a));
 	Arrays.sort(a);
 	System.out.println(Arrays.toString(a));
+
+	System.out.println();
+	System.out.println();
+	System.out.println();
+
+        Akholyte akh = new Akholyte();
+	System.out.println(akh);
+
+	String abcs = "abcdefghijklmnopqrstuvwxyz";
+
+	Akholyte[] akhArray = {
+	    new Akholyte("hello world"),
+	    new Akholyte("abcd"),
+	    new Akholyte("god"),
+	    new Akholyte("do3212o"),
+	    new Akholyte("asmkeir") };
+	System.out.println(Arrays.toString(akhArray));
+	Arrays.sort(akhArray);
+	System.out.println(Arrays.toString(akhArray));
     }
 }

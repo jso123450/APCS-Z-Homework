@@ -72,6 +72,10 @@ public abstract class Basechar implements Comparable{
     public String getName(){
 	return name;
     }
+   
+    public void setName(String n){
+	name = n;
+    }
 
     public String toString(){
 	return getName();
