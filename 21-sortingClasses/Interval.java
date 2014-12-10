@@ -1,7 +1,35 @@
 import java.util.Random;
 import java.util.Arrays;
 
-public class Interval{
+/*
+  Interfaces -> contracts (in java) that specify that a class will implement
+                certain methods with certain signatures
+
+  interface name {
+    method1_signature;
+    method2_signature;
+    etc
+  }
+
+  method signature is: public/private return_type name(params);
+
+  For example, the bult in Java Comparable interface looks something like this:
+    interface Comparable {
+      public int compareTo(Object other);
+    }
+
+  To agree to implement an interface, use "implements"
+  ex:
+    class myClass implements Comparable{
+       // class definition here
+    }
+
+  A class can only extend one class but it can implement as many interfaces
+  as it wants (separated by commas)
+
+ */
+
+public class Interval implements Comparable{
 
     /* ------------------------------ Variables --------------------------- */
     private int low, high;
@@ -35,65 +63,49 @@ public class Interval{
         return s;
     }
 
-    public int getLow(){
-	return low;
-    }
-
-    public int getHigh(){
-	return high;
-    }
-
-    public void setLow(int l){
-	low = l;
-    }
-
-    public void setHigh(int h){
-	high = h;
-    }
-
     public static void printStuff(){
 	System.out.println("Stuff");
     }
 
-    public int compareTo(Interval other){
-	if (this.getLow() == other.getLow()){
-	    return (this.getHigh() - other.getHigh());
-	}
+    public int compareTo(Object other){
+	// casts the parameter other to the needed class and assign it
+	// to a local variable
+	Interval o = (Interval)other;
+	if (this.low == o.low)
+	    return (this.high - o.high);
 	else
-	    return (this.getLow() - other.getLow());
+	    return (this.low - o.low);
     }
 
     /* ------------------------------ Main --------------------------- */
     public static void main(String[] args){
-	/*
 	for (int i = 0; i < 10; i++){
 	    System.out.println(new Interval());
 	}
-	// this works because printStuff is static -- it belongs to the
-	//   class and is created with the class (not with instances)
-	//   We can call it without instantiating an Interval, because
-	//   we're already in the class
+	/* this works because printStuff is static -- it belongs to the
+	   class and is created with the class (not with instances)
+	   We can call it without instantiating an Interval, because
+	   we're already in the class
+	*/
 	printStuff();
 	Interval.printStuff(); // calling off the class, like Math.sqrt
 	Interval x = new Interval();
 	x.printStuff(); // but we can also call it off of an instance
-	*/
+
 	Interval[] a = new Interval[10];
 	for (int i = 0; i < a.length; i++){
 	    a[i] = new Interval();
 	}
 	System.out.println(Arrays.toString(a));
-	System.out.println(a[0]);
-	System.out.println(a[1]);
-	System.out.println(a[0].compareTo(a[1]));
 
-	System.out.println();
+	String[] sa = {"frog","toad","iguana","kimodo dragon","bearded lizard"};
+	System.out.println(Arrays.toString(sa));
+	Arrays.sort(sa);
+	System.out.println(Arrays.toString(sa));
 
-	Interval i1 = new Interval(5, 10);
-	//Interval i2 = new Interval(5, 10); // all test cases seem to work
-	//Interval i2 = new Interval(5, 11);
-	Interval i2 = new Interval(4, 10);
-	System.out.println(i1.compareTo(i2));
+	System.out.println(Arrays.toString(a));
+	Arrays.sort(a);
+	System.out.println(Arrays.toString(a));
     }
 
 }
