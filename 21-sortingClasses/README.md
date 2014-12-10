@@ -8,8 +8,8 @@
         </li>
 	<li> in a class definition, inheritance must come first
 	     <ul>
-		<li> i.e. <i>public class Mage extends Basechar implements Comparable</i> </li>
-		<li> errors occur if it is <i>public class Mage implements Comparable extends Basechar</i> </li>
+		<li> i.e. <code>public class Mage extends Basechar implements Comparable</code> </li>
+		<li> errors occur if it is <code>public class Mage implements Comparable extends Basechar</code> </li>
 	     </ul>
         </li>
 
