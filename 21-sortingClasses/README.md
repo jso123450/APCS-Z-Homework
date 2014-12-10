@@ -1,7 +1,5 @@
 <b>Homework #21: Sorting Classes</b>
-
 <br>
-
 <ul>
 	<li> implementation is inherited
 	     <ul>
