@@ -1,0 +1,38 @@
+Link to Jake and Max's StuyTorrent
+https://github.com/jbaum98/stuytorrent
+
+Checklist
+
+Documentation
+YES -frequent commenting to explain parts of the code
+YES -easily understood (I'm still not quite sure what a Socket is though)
+YES -incomplete code marked with TODO
+BASICALLY -all functions commented
+
+
+Functionality
+YES (from what I saw today in class) -is everything working so far
+    - the chatting
+    - the connecting
+    - the peer list
+
+
+Comments
+Receiver.java
+    line 22
+   	 - I like how there's a reference to the original abstract method
+    	 (Yes, it is extended, but in the case of multiple levels of inheritance,
+   	  it is easier to know exactly which level the method comes from)
+    
+    line 25
+    	 -Function of the line is clearly explanined
+    line 30
+    	 -TODOs are commented
+Peer.java
+    lines 1-7
+    	  - Documentation at top of file; easy to determine function of class
+Message.java
+    GENERAL
+	  - clearly documented function of class
+    line 28
+          - nice helper function
